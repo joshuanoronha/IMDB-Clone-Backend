@@ -71,14 +71,24 @@ app.put('/movie', [
 })
 
 app.get('/movies', [
-    query('search').optional().isString().escape().trim()
+    query('search').optional().isString().escape().trim(),
+    query('sort_by').optional().isString().escape().trim(),
+    query('order_by').optional().isString().escape().trim(),
+    query('genre').optional(),
+    check('genre.*').optional().isString().escape().trim(),
 ], async (req, res) => {
+    const genreList = []
+    Object.keys(req.query.genre).map(genre => {
+        const newGenre = new RegExp(`${genre || ''}`, 'i')
+        genreList.push(newGenre)
+    })
     const searchString = new RegExp(`.*${req.query.search || ''}.*`, 'i') 
     await Movies.find({
         $or: [
             { "name": searchString },
             { "director": searchString }
-        ]
+        ],
+        genre : {$in : genreList }
     }, function (err, docs) {
         console.error(err)
         res.send(docs)
