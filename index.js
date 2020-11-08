@@ -2,7 +2,7 @@ const app = require('express')();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 const auth = require('./services/auth');
 const movie = require('./routes/movie');
 const movies = require('./routes/movies');
@@ -19,6 +19,6 @@ app.use('/login', login);
 app.use('/user', user);
 app.use('/genres', genres);
 
-app.listen(port, () => {
-  console.info(`Server is running at ${port}`);
+app.listen(PORT, () => {
+  console.info(`Server is running at ${PORT}`);
 });
