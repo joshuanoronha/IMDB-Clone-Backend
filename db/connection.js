@@ -8,7 +8,7 @@ mongoose.connect(fetchConnectionString('database'), {
 });
 const connection = mongoose.connection
 connection.on('connected', function () {
-    console.log('database is connected successfully');
+    console.log('Database is connected successfully!');
 });
 connection.on('error', console.error.bind(console, 'connection error:'));
 
