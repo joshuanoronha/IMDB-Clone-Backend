@@ -23,7 +23,8 @@ app.use('/movies', movies);
 app.use('/login', login);
 app.use('/user', user);
 app.use('/genres', genres);
-app.use('/', (req, res) => res.json({ error: 'Not found' }));
+app.get('/', (req, res) => res.json({ error: 'Not found' }));
+
 app.listen(PORT, () => {
   console.info(`Server is running at ${PORT}`);
 });
