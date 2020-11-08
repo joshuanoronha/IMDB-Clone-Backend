@@ -8,6 +8,7 @@ const movie = require('./routes/movie');
 const movies = require('./routes/movies');
 const user = require('./routes/user');
 const login = require('./routes/login');
+const genres = require('./routes/genres');
 
 auth.initializePassport();
 app.use(cors());
@@ -16,6 +17,7 @@ app.use('/movie', movie);
 app.use('/movies', movies);
 app.use('/login', login);
 app.use('/user', user);
+app.use('/genres', genres);
 
 app.listen(port, () => {
   console.info(`Server is running at ${port}`);

@@ -5,10 +5,19 @@ const { ObjectId } = Schema;
 
 const movieSchema = new Schema({
   movieId: ObjectId,
-  '99popularity': Number,
-  director: String,
+  '99popularity': {
+    type: Number,
+    required: true,
+  },
+  director: {
+    type: String,
+    required: true,
+  },
   genre: Array,
-  imdb_score: Number,
+  imdb_score: {
+    type: Number,
+    required: true,
+  },
   name: {
     type: String,
     required: true,

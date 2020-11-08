@@ -5,14 +5,14 @@ const router = express.Router();
 const Movies = require('../models/movies');
 
 router.get('/', [
-  query('search').optional().isString().escape()
+  query('search').optional({ nullable: true }).isString().escape()
     .trim(),
-  query('sort_by').optional().isString().escape()
+  query('sort_by').optional({ nullable: true }).isString().escape()
     .trim(),
-  query('order_by').optional().isString().escape()
+  query('order_by').optional({ nullable: true }).isString().escape()
     .trim(),
-  query('genre').optional(),
-  check('genre.*').optional().isString().escape()
+  query('genre').optional({ nullable: true }),
+  check('genre.*').optional({ nullable: true }).isString().escape()
     .trim(),
 ], async (req, res) => {
   const errors = validationResult(req);
