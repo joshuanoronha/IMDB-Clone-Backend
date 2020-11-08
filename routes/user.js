@@ -1,31 +1,25 @@
 const express = require('express');
-const { body, validationResult, check } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 const router = express.Router();
-const Users = require('../models/users');
+const passport = require('passport');
 
 router.post('/', [
-  body('99popularity').optional().isNumeric().escape()
+  body('email').isEmail().escape()
     .trim(),
-  body('director').optional().isString().escape()
+  body('password').isString()
     .trim(),
-  body('genre').optional().isArray(),
-  check('genre.*').optional().isString().escape()
-    .trim(),
-  body('imdb_score').optional().isNumeric().escape(),
-  body('name').isString().escape().trim(),
+  passport.authenticate('signup', { session: false }),
 ],
 async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() }); // errormessages
+    return res.status(400).json({ errors: errors.array() });
   }
-  const newMovie = new Users(req.body);
-  try {
-    const result = await newMovie.save();
-    res.send(result);
-  } catch (error) {
-    res.send(error);
-  }
+  res.json({
+    message: 'Signup successful',
+  });
   return true;
 });
+
+module.exports = router;

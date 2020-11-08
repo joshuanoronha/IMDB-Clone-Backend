@@ -1,8 +1,9 @@
 const express = require('express');
 const { body, validationResult, check } = require('express-validator');
+const passport = require('passport');
+const Movies = require('../models/movies');
 
 const router = express.Router();
-const Movies = require('../models/movies');
 
 router.post('/', [
   body('99popularity').optional().isNumeric().escape()
@@ -14,11 +15,12 @@ router.post('/', [
     .trim(),
   body('imdb_score').optional().isNumeric().escape(),
   body('name').isString().escape().trim(),
+  passport.authenticate('jwt', { session: false }),
 ],
 async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() }); // errormessages
+    return res.status(400).json({ errors: errors.array() });
   }
   const newMovie = new Movies(req.body);
   try {
@@ -40,10 +42,11 @@ router.put('/', [
     .trim(),
   body('imdb_score').optional().isNumeric().escape(),
   body('id').isString().escape(),
+  passport.authenticate('jwt', { session: false }),
 ], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() }); // errormessages
+    return res.status(400).json({ errors: errors.array() });
   }
   const { id } = req.body;
   delete req.body.id;

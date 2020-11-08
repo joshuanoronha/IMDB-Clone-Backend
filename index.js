@@ -1,14 +1,20 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
-app.use(bodyParser.json());
 const port = 3000;
+const auth = require('./services/auth');
 const movie = require('./routes/movie');
 const movies = require('./routes/movies');
 const user = require('./routes/user');
+const login = require('./routes/login');
 
+auth.initializePassport();
+app.use(cors());
+app.use(bodyParser.json());
 app.use('/movie', movie);
 app.use('/movies', movies);
+app.use('/login', login);
 app.use('/user', user);
 
 app.listen(port, () => {
