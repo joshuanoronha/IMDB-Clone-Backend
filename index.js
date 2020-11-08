@@ -10,6 +10,11 @@ const user = require('./routes/user');
 const login = require('./routes/login');
 const genres = require('./routes/genres');
 
+process.on('uncaughtException', (err) => {
+  console.error('There was an uncaught error', err);
+  process.exit(1);
+});
+
 auth.initializePassport();
 app.use(cors());
 app.use(bodyParser.json());
