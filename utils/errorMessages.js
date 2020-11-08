@@ -1,3 +1,3 @@
 module.exports = {
-    badRequest: "Wrong parameter sent"
-}
+  badRequest: 'Wrong parameter sent',
+};

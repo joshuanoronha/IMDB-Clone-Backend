@@ -14,5 +14,10 @@
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
     "mongoose": "^5.10.13"
+  },
+  "devDependencies": {
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
   }
 }

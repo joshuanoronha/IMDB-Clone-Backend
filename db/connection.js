@@ -1,18 +1,19 @@
 const mongoose = require('mongoose');
-const { fetchConnectionString } = require('../config/secrets')
+const { fetchConnectionString } = require('../config/secrets');
+
 mongoose.connect(fetchConnectionString('database'), {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
 });
-const connection = mongoose.connection
-connection.on('connected', function () {
-    console.log('Database is connected successfully!');
+const { connection } = mongoose;
+connection.on('connected', () => {
+  console.info('Database is connected successfully!');
 });
 connection.on('error', console.error.bind(console, 'connection error:'));
 
 module.exports = {
-    connection,
-    mongoose
-}
+  connection,
+  mongoose,
+};
