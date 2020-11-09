@@ -54,7 +54,7 @@ The base URL of the Heroku application is http://murmuring-shore-39160.herokuapp
     <td>-</td>
     <td>id (movie_id)</td>
     <td>-</td>
-    <td>not required</td>
+    <td>required</td>
     <td>Delete data for a particular movie id</td>
   </tr>
   <tr>
