@@ -34,7 +34,7 @@ async (req, res) => {
   return true;
 });
 
-router.put('/', [
+router.patch('/', [
   body('99popularity').isNumeric().escape()
     .trim(),
   body('director').isString().escape()
