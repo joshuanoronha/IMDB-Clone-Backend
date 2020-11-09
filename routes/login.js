@@ -21,9 +21,7 @@ async (req, res, next) => {
     async (err, user) => {
       try {
         if (err || !user) {
-          const error = new Error('An error occurred.');
-
-          return next(error);
+          throw new Error('Authentication Failed');
         }
 
         req.login(
@@ -38,7 +36,7 @@ async (req, res, next) => {
           },
         );
       } catch (error) {
-        return next(error);
+        return res.status(401).json({ error: 'Authentication Failed for User' });
       }
       return true;
     },
