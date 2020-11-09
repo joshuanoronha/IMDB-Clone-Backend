@@ -23,7 +23,7 @@ The base URL of the Heroku application is http://murmuring-shore-39160.herokuapp
     <th>Request Query</th>
     <th>Request Params</th>
     <th>Request Body</th>
-    <th>Authentication</th>
+    <th>Authentication Header</th>
     <th>Description</th>
   </tr>
   <tr>
