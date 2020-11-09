@@ -36,7 +36,7 @@ The base URL of the Heroku application is http://murmuring-shore-39160.herokuapp
     </td>
     <td>-</td>
     <td>-</td>
-    <td>required</td>
+    <td>not required</td>
     <td>Gets all movies matching particular parameters, returns all movies if no parameters passed, query params can be chained together</td>
   </tr>
   <tr>
