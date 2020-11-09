@@ -6,7 +6,14 @@ const Movies = require('../models/movies');
 router.get('/', async (req, res) => {
   try {
     const result = await Movies.distinct('genre').sort();
-    res.send(result);
+    const genres = [];
+    result.map((genre) => {
+      if (!genres.includes(genre.trim())) {
+        genres.push(genre.trim());
+      }
+      return true;
+    });
+    res.send(genres);
   } catch (error) {
     res.send(error);
   }
