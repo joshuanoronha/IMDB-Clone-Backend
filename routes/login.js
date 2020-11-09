@@ -2,7 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const passport = require('passport');
-const secrets = require('../config/secrets');
+const { jwtKey } = require('../config/config');
 
 const router = express.Router();
 
@@ -32,7 +32,7 @@ async (req, res, next) => {
           async (error) => {
             if (error) return next(error);
             const resp = { email: user.email };
-            const token = jwt.sign({ user: resp }, secrets.fetchKey('jwt'));
+            const token = jwt.sign({ user: resp }, jwtKey);
 
             return res.json({ token });
           },

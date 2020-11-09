@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const { fetchConnectionString } = require('../config/secrets');
+const { dbConnection } = require('../config/config');
 
-mongoose.connect(fetchConnectionString('database'), {
+mongoose.connect(dbConnection, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
