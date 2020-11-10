@@ -78,7 +78,7 @@ The base URL of the Heroku application is http://murmuring-shore-39160.herokuapp
     <td>-</td>
     <td>-</td>
     <td>99popularity, director, 
-    genre, imdb_score
+    genre, imdb_score, name
     </td>
     <td>required</td>
     <td>Add new movie</td>
